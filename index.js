@@ -1,35 +1,507 @@
-const menuBtn = document.querySelector(".menu-btn");
-const navigation = document.querySelector(".navigation");
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 
-menuBtn.addEventListener("click", () => {
-    menuBtn.classList.toggle("active");
-    navigation.classList.toggle("active");
-})
-
-const btns = document.querySelectorAll(".nav-btn");
-const slides = document.querySelectorAll(".video-slide");
-const contents = document.querySelectorAll(".content");
-
-var sliderNav = function(manual){
-    btns.forEach((btn) => {
-    btn.classList.remove("active");
-    });
-
-    slides.forEach((slide) => {
-    slide.classList.remove("active");
-    });
-
-    contents.forEach((content) => {
-    content.classList.remove("active");
-    });
-
-    btns[manual].classList.add("active");
-    slides[manual].classList.add("active");
-    contents[manual].classList.add("active");
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
 }
 
-btns.forEach((btn, i) => {
-    btn.addEventListener("click", () => {
-    sliderNav(i);
-    });
-});
+header{
+    z-index: 999;
+    position: absolute;
+    padding: 15px 20px;
+    transition: 0.5s ease;
+}
+
+header .brand{
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-decoration: none;
+}
+
+header .brand:hover{
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #1680AC;
+    transition: 0.3s ease;
+}
+
+section{
+    padding: 100px 200px;
+}
+
+.home{
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background: #2696E9;
+}
+
+.home:before{
+    z-index: 777;
+    content: '';
+    position: absolute;
+    background: rgba(3, 96, 251, 0.3);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.home .content{
+    z-index: 888;
+    color: #fff;
+    width: 70%;
+    margin-top: 50px;
+    display: none;
+}
+
+.home .content.active{
+    display: block;
+}
+
+.home .content h1{
+    font-size: 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 75px;
+    margin-bottom: 40px;
+}
+
+.home .content h1 span{
+    font-size: 3rem;
+    font-weight: 600;
+}
+
+.home .content p{
+    margin-bottom: 65px;
+}
+
+.home button {
+    display: inline-block;
+    padding: 10px 20px; 
+    border-radius: 20px;
+    background-color: #fff;
+    color: #1680AC;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid #1680AC;
+    transition: 0.3s ease;
+}
+
+.home button:hover{
+    border: 1px solid #1680AC;
+    background-color: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    transition: 0.3s ease;
+}
+
+.home video{
+    z-index: 000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.slider-navigation{
+    z-index: 888;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(80px);
+    margin-bottom: 12px;
+}
+
+.slider-navigation .nav-btn{
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
+}
+
+.slider-navigation .nav-btn.active{
+    background: #2696E9;
+}
+
+.slider-navigation .nav-btn:not(:last-child){
+    margin-right: 20px;
+}
+
+.slider-navigation .nav-btn:hover{
+    transform: scale(1.2);
+}
+
+.video-slide{
+    position: absolute;
+    width: 100%;
+    clip-path: circle(0% at 0 50%);
+}
+
+.video-slide.active{
+    clip-path: circle(150% at 50%);
+    transition: 2s ease;
+    transition-property: clip-path;
+}
+
+.about{
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.about h1{
+    font-size: 2em;
+    font-weight: 900;
+    letter-spacing: 2.5px;
+    line-height: 75px;
+    margin-bottom: 40px;
+    color: #1680AC;
+}
+
+.about p{
+    font-weight: 100;
+    letter-spacing: 2.5px;
+    line-height: 25px;
+    margin-bottom: 40px;
+    padding: 50px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.icon-container{
+    display: flex; 
+    justify-content: space-evenly;
+    width: 100%;
+    color: rgba(22, 128, 172, 0.5);
+}
+
+.air-rotate{
+    transform: rotate(315deg);
+}
+
+.destination{
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.dest-cards{
+    display: flex;
+    height: 100vh;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.card{
+    width: 20%;
+    text-align: center;
+    align-content: center;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+}
+
+.card::before{
+    position: absolute;
+    content: '';
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    transition: opacity 0.3s ease;
+}
+
+.card:hover::before{
+    opacity: 0;
+}
+
+.card:hover .card-content{
+    opacity: 0;
+}
+
+.card-content{
+    position: relative;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+.card-content p{
+    color: #fff;
+    font-size: 10px;
+}
+
+.card-content h1{
+    text-transform: uppercase;
+    color: #fff;
+}
+
+.card-content button{
+    margin-top: 200px;
+    display: inline-block;
+    padding: 10px 20px; 
+    border-radius: 20px;
+    background-color: #fff;
+    color: #1680AC;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+.red-card{
+    background-image: url('./assets/destination/santorini.jpg');
+}
+
+.red-card::before{
+    background-color: rgba(255, 0, 0, 0.5);
+}
+
+.blue-card{
+    background-image: url('/assets/destination/bali.avif');
+}
+
+.blue-card::before{
+    background-color: rgba(0, 0, 255, 0.5);
+}
+
+.lblue-card{
+    background-image: url('/assets/destination/banff.jpg');
+}
+
+.lblue-card::before{
+    background-color: rgba(173, 230, 230, 0.5);
+}
+
+.grey-card{
+    background-image: url('/assets/destination/amalfi.jpg');
+}
+
+.grey-card::before{
+    background-color: rgba(64, 64, 64, 0.5);
+}
+
+.green-card{
+    background-image: url('/assets/destination/rishikesh.jpeg');
+}
+
+.green-card::before{
+    background-color: rgba(173, 255, 47, 0.5);
+}
+
+.testimonial{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100vh;
+}
+
+.testimonial h1{
+    font-size: 4em;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    line-height: 75px;
+    margin-bottom: 40px;
+    color: #1680AC;
+}
+
+.testimonial .test-content{
+    margin: 40px;
+    display: none;
+}
+
+.testimonial .test-content.active{
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.testimonial p{
+    font-weight: 100;
+    letter-spacing: 2.5px;
+    line-height: 25px;
+    padding: 50px;
+    padding-bottom: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.test-navigation{
+    z-index: 888;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: translateY(80px);
+    margin-bottom: 12px;
+}
+
+.test-navigation .test-nav-btn{
+    width: 12px;
+    height: 12px;
+    background: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
+    transition: 0.3s ease;
+    background: #1680AC;
+}
+
+.test-navigation .test-nav-btn.active{
+    background: #fff;
+    border: 1px solid #1680AC;
+}
+
+.test-navigation .test-nav-btn:not(:last-child){
+    margin-right: 20px;
+}
+
+.test-navigation .test-nav-btn:hover{
+    transform: scale(1.2);
+}
+
+.gallery{
+    height: 80vh;
+    /* background-color: red; */
+    padding: 20px;
+}
+
+.gallery .image-container{
+    display: flex;
+    justify-content: center;
+}
+
+.gallery .image-container img{
+    height: 200px;
+    width: 200px;
+    margin: 20px;
+}
+
+.cta {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 50px;
+  }
+  
+.cta-content {
+    flex: 1;
+    padding-right: 50px;
+}
+  
+.cta-content h1 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: #1680AC;
+}
+  
+.cta-content p {
+    font-size: 1rem;
+    letter-spacing: 2.5px;
+    padding-bottom: 25px;
+    color: rgba(0, 0, 0, 0.5);
+}
+
+.cta-content button {
+    display: inline-block;
+    padding: 10px 20px; 
+    border-radius: 20px;
+    background-color: #fff;
+    color: #1680AC;
+    text-align: center;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: bold;
+    border: 1px solid #1680AC;
+    transition: 0.3s ease;
+}
+
+.cta-content button:hover{
+    border: 1px solid #1680AC;
+    background-color: #1680AC;
+    color: #fff;
+    transition: 0.3s ease;
+}
+  
+.cta-image {
+    flex: 1;
+}
+  
+.cta-image img {
+    width: 100%;
+    border-radius: 10px;
+}
+    
+.footer-section {
+    background-color: #1680AC;
+    color: #fff;
+    padding: 50px 0;
+}
+  
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+  
+.footer-heading h2 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: 900;
+    letter-spacing: 5px;
+    line-height: 75px;
+}
+  
+.email-signup {
+    margin-bottom: 20px;
+}
+  
+.email-signup input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+  
+.email-signup button {
+    padding: 10px 20px;
+    background-color: #222;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+.social-links i {
+    color: #fff;
+    text-decoration: none;
+    margin-right: 10px;
+}
+  
+.social-links a:last-child {
+    margin-right: 0;
+}
+  
+.footer-bottom {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 10px
+}
