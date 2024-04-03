@@ -16,5 +16,4 @@ The website can be accessed using the following link : https://travel-l3en.onren
 4. **Information Hub:** Beyond aesthetics, the landing page serves as an information hub, providing users with essential details about the website's offerings, services, and expertise.
 
 ## Images
-
-<img width="959" alt="image" src="https://github.com/meghaaroraa/Landing-Page/assets/96053499/fc2a54a5-8189-4992-830d-bbb1ae9342de">
+![image](https://github.com/meghaaroraa/Landing-Page/assets/96053499/20647312-1f45-47e3-a5ed-f18666c98f2c)
