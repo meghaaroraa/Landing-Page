@@ -275,7 +275,7 @@ section{
 }
 
 .blue-card{
-    background-image: url('/assets/destination/bali.avif');
+    background-image: url('./assets/destination/bali.avif');
 }
 
 .blue-card::before{
@@ -283,7 +283,7 @@ section{
 }
 
 .lblue-card{
-    background-image: url('/assets/destination/banff.jpg');
+    background-image: url('./assets/destination/banff.jpg');
 }
 
 .lblue-card::before{
@@ -291,7 +291,7 @@ section{
 }
 
 .grey-card{
-    background-image: url('/assets/destination/amalfi.jpg');
+    background-image: url('./assets/destination/amalfi.jpg');
 }
 
 .grey-card::before{
@@ -299,7 +299,7 @@ section{
 }
 
 .green-card{
-    background-image: url('/assets/destination/rishikesh.jpeg');
+    background-image: url('./assets/destination/rishikesh.jpeg');
 }
 
 .green-card::before{
